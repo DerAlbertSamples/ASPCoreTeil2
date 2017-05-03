@@ -13,16 +13,17 @@ namespace MvcApp.Controllers
             return View();
         }
 
+        public string FullName { get; set; }
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = $"Hello {FullName}";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = $"Hello {FullName}";
 
             return View();
         }
