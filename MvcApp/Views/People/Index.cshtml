@@ -1,0 +1,19 @@
+﻿
+@model IEnumerable<MvcApp.ViewModel.PersonModel>
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var person in Model)
+{
+    @await Component.InvokeAsync("Person", new { Person = person});
+}
+
+
+@foreach (var person in Model)
+{
+    <vc:person person="@person"></vc:person>
+}
