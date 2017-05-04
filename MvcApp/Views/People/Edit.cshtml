@@ -1,0 +1,12 @@
+﻿@using MvcApp.ViewModel;
+@model MvcApp.ViewModel.PersonModel
+
+<form asp-action="Edit" asp-route-id="@Model.Id">
+    <select asp-for="Salutation" asp-items="@Html.GetEnumSelectList<Salutation>()"></select>
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" />
+
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" />
+    <button type="submit">Speichern</button>
+</form>

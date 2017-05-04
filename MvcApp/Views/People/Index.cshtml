@@ -15,5 +15,5 @@
 
 @foreach (var person in Model)
 {
-    <vc:person person="@person"></vc:person>
+    <a asp-action="Edit" asp-route-id="@person.Id"><vc:person person="@person"></vc:person></a>
 }
