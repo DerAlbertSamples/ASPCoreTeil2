@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Internal;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MvcApp.Controllers;
+using MvcApp.Data;
 
 namespace MvcApp
 {
@@ -29,6 +32,8 @@ namespace MvcApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(builder => builder.UseInMemoryDatabase(databaseName: "Foobar"));
+
             // Add framework services.
             services.AddMvc();
             services.AddTransient<IControllerPropertyActivator, FullNamePropertyControllerActivator>();
@@ -39,6 +44,8 @@ namespace MvcApp
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.AddDatabaseData();
 
             if (env.IsDevelopment())
             {
